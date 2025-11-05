@@ -1,0 +1,17 @@
+﻿@rendermode InteractiveServer
+
+<h3>Child</h3>
+
+I am the child component.
+
+@if (_ImAGoodChild)
+{
+    <p>The child says: "Yes I am a good child!"</p>
+}
+else
+{
+    <p>The child says: "I'll try to do better!"</p>
+}
+
+
+<button @onclick="HandleChildClick">Click me</button>

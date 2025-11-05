@@ -1,0 +1,66 @@
+﻿@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+<div class="container my-3">
+    <h3 class="mb-4">Yoga Class Types</h3>
+    @if (_isLoading)
+{
+    <p><em>Loading data...</em></p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var classType in YogaClassTypesList)
+                {
+                    <tr>
+                        <td>@classType.Name</td>
+                        <td>@classType.Description</td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm" @onclick="@(() => OnYogaClassTypeSelected(classType))" aria-label="View @classType.Name">
+                                View Classes
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+
+    @if (YogaClassesList.Any())
+    {
+        <hr class="my-4" />
+
+        <h4 class="mb-3">Yoga Classes</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var yogaClass in YogaClassesList)
+                    {
+                        <tr>
+                            <td>@yogaClass.Name</td>
+                            <td>@yogaClass.Description</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+
+

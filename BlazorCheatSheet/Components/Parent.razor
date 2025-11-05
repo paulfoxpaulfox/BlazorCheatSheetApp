@@ -1,0 +1,28 @@
+﻿@rendermode InteractiveServer
+
+<h3>Parent</h3>
+
+
+
+
+I am the parent component.
+
+@if (_ImAGoodParent)
+{
+    <p>The parent says: "Good job, child!"</p>
+}
+else
+{
+    <p>The parent says: "You can do better, child!"</p>
+}
+
+<ErrorBoundary>
+<ChildContent>
+        <Child OnChildButtonClick="ParentButtonHandlerExecuted"></Child>
+</ChildContent>
+<ErrorContent>
+    Ooops!!!
+</ErrorContent>
+
+</ErrorBoundary>
+

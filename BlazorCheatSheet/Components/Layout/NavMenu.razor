@@ -1,0 +1,54 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Blazor Cheat Sheet</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="eventCallback">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Event Callback
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="dataFetch">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Data Fetch
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="applicationState">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Application State
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="virtualize">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Virtualize
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="addForm">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Add Form
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
