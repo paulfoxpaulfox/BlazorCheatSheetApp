@@ -5,7 +5,7 @@ using BlazorCheatSheet.Repositories;
 using BlazorCheatSheet.Services;
 using Microsoft.EntityFrameworkCore;
 using BlazorCheatSheet.State;
-using Microsoft.AspNetCore.Components.WebAssembly.Services;
+using BlazorCheatSheet.Client.Contracts.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,5 +48,8 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(BlazorCheatSheet.Client._Imports).Assembly);
+
+// minimal apis
+app.MapGet("/api/attendance", async (IYogaClassAttendanceRecordDataService yogaClassAttendanceRecordDataService) => await yogaClassAttendanceRecordDataService.GetAllYogaClassAttendanceRecordsAsync());
 
 app.Run();
