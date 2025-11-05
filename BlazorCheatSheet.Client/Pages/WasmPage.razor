@@ -1,0 +1,35 @@
+﻿@page "/wasm"
+
+<h3>WASM Page</h3>
+<hr />
+@if (YogaClassAttendanceRecordList?.Any() == true)
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Attendee Count</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach (var record in YogaClassAttendanceRecordList)
+                    {
+                        <tr>
+                            <td>@record.YogaClassId</td>
+                            <td>@record.AttendanceDate.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")</td>
+                            <td>@record.AttendeeCount</td>
+                            <td><a href="@($"attendanceEditForm/{record.Id}")" class="btn btn-outline-primary btm-sm mb-1">Edit</a></td>
+                        </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+
+
+}
+<br />
+<hr />
+<p>This is an example of a large data set being loaded from an API call initiated from a WASM page.</p>
