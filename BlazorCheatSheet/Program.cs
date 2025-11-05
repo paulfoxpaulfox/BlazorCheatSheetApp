@@ -49,4 +49,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(BlazorCheatSheet.Client._Imports).Assembly);
 
+// minimal apis
+app.MapGet("/api/attendance", async (IYogaClassAttendanceRecordDataService yogaClassAttendanceRecordDataService) => await yogaClassAttendanceRecordDataService.GetAllYogaClassAttendanceRecordsAsync());
+
 app.Run();
