@@ -1,5 +1,4 @@
-﻿using BlazorCheatSheet.Client.Contracts.Services;
-using BlazorCheatSheet.Shared.Domain;
+﻿using BlazorCheatSheet.Shared.Domain;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorCheatSheet.Client.Pages

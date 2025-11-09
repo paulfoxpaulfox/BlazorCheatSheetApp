@@ -1,4 +1,4 @@
-﻿using BlazorCheatSheet.Client.Contracts.Services;
+﻿using BlazorCheatSheet.Client;
 using BlazorCheatSheet.Contracts.Services;
 using BlazorCheatSheet.Shared.Domain;
 using Microsoft.AspNetCore.Components;

@@ -5,7 +5,7 @@ using BlazorCheatSheet.Repositories;
 using BlazorCheatSheet.Services;
 using Microsoft.EntityFrameworkCore;
 using BlazorCheatSheet.State;
-using BlazorCheatSheet.Client.Contracts.Services;
+using BlazorCheatSheet.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 

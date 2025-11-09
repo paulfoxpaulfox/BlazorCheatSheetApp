@@ -1,15 +1,18 @@
-﻿using BlazorCheatSheet.Client.Contracts.Services;
-using BlazorCheatSheet.Shared.Domain;
+﻿using BlazorCheatSheet.Shared.Domain;
+using Blazored.LocalStorage;
 using System.Text.Json;
 
 namespace BlazorCheatSheet.Client.Services
 {
-    internal class ClientYogaClassAttendanceRecordDataService : IYogaClassAttendanceRecordDataService
+    public class ClientYogaClassAttendanceRecordDataService : IYogaClassAttendanceRecordDataService
     {
         private readonly HttpClient _httpClient;
-        public ClientYogaClassAttendanceRecordDataService(HttpClient httpClient)
+        private readonly ILocalStorageService _localStorageService;
+
+        public ClientYogaClassAttendanceRecordDataService(HttpClient httpClient, ILocalStorageService localStorageService)
         {
             _httpClient = httpClient;
+            _localStorageService = localStorageService;
         }
 
         public Task<YogaClassAttendanceRecord> AddYogaClassAttendanceRecordAsync(YogaClassAttendanceRecord yogaClassAttendanceRecord)
@@ -24,6 +27,25 @@ namespace BlazorCheatSheet.Client.Services
 
         public async Task<IEnumerable<YogaClassAttendanceRecord>> GetAllYogaClassAttendanceRecordsAsync()
         {
+            bool yogaClassExirationExists = await _localStorageService.ContainKeyAsync("yogaClassAttendanceRecordsExpiration");
+
+            if (yogaClassExirationExists)
+            {
+                DateTime expiration = await _localStorageService.GetItemAsync<DateTime>("yogaClassAttendanceRecordsExpiration");
+                if (DateTime.Now < expiration)
+                {
+                    bool yogaClassRecordsExists = await _localStorageService.ContainKeyAsync("yogaClassAttendanceRecords");
+                    if (yogaClassRecordsExists)
+                    {
+                        var cachedRecords = await _localStorageService.GetItemAsync<IEnumerable<YogaClassAttendanceRecord>>("yogaClassAttendanceRecords");
+                        if (cachedRecords != null)
+                        {
+                            return cachedRecords;
+                        }
+                    }
+                }
+            }
+
             var list = await
                 JsonSerializer.DeserializeAsync<IEnumerable<YogaClassAttendanceRecord>>(
                     await _httpClient.GetStreamAsync("/api/attendance"),
@@ -31,6 +53,11 @@ namespace BlazorCheatSheet.Client.Services
                     {
                         PropertyNameCaseInsensitive = true
                     });
+
+            await _localStorageService.SetItemAsync("yogaClassAttendanceRecords", list);
+
+            await _localStorageService.SetItemAsync("yogaClassAttendanceRecordsExpiration", DateTime.Now.AddMinutes(5));
+
             return list ?? [];
         }
 

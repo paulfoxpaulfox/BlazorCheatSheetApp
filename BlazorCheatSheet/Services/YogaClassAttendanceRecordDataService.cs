@@ -1,4 +1,4 @@
-using BlazorCheatSheet.Client.Contracts.Services;
+using BlazorCheatSheet.Client;
 using BlazorCheatSheet.Contracts.Repositories;
 using BlazorCheatSheet.Shared.Domain;
 

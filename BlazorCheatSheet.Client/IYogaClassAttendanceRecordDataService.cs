@@ -1,6 +1,6 @@
 using BlazorCheatSheet.Shared.Domain;
 
-namespace BlazorCheatSheet.Client.Contracts.Services
+namespace BlazorCheatSheet.Client
 {
     public interface IYogaClassAttendanceRecordDataService
     {
